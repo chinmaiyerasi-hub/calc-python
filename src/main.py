@@ -1,28 +1,43 @@
-# -----------------------------------------
-#     SIMPLE BUT BIG PYTHON CALCULATOR
-# -----------------------------------------
+"""
+calculator.py
 
-def add(a, b):
-    return a + b
+A simple, maintainable calculator implemented as a class.
+Supports add, subtract, multiply, divide, power, and modulus.
+"""
 
-def subtract(a, b):
-    return a - b
+class Calculator:
+    """A simple calculator class."""
 
-def multiply(a, b):
-    return a * b
+    def add(self, a: float, b: float) -> float:
+        """Return the sum of a and b."""
+        return a + b
 
-def divide(a, b):
-    if b == 0:
-        return "Error! Cannot divide by zero."
-    return a / b
+    def subtract(self, a: float, b: float) -> float:
+        """Return the difference of a and b."""
+        return a - b
 
-def power(a, b):
-    return a ** b
+    def multiply(self, a: float, b: float) -> float:
+        """Return the product of a and b."""
+        return a * b
 
-def modulus(a, b):
-    return a % b
+    def divide(self, a: float, b: float) -> float | str:
+        """Return the division of a by b. Returns error if b is zero."""
+        if b == 0:
+            return "Error! Cannot divide by zero."
+        return a / b
 
-def calculator():
+    def power(self, a: float, b: float) -> float:
+        """Return a raised to the power of b."""
+        return a ** b
+
+    def modulus(self, a: float, b: float) -> float:
+        """Return the remainder of a divided by b."""
+        return a % b
+
+
+def main():
+    """Main function to run the calculator CLI."""
+    calc = Calculator()
     print("===================================")
     print("        PYTHON CALCULATOR")
     print("===================================")
@@ -56,22 +71,19 @@ def calculator():
 
         print("\nResult:")
 
-        if choice == '1':
-            print(add(num1, num2))
-        elif choice == '2':
-            print(subtract(num1, num2))
-        elif choice == '3':
-            print(multiply(num1, num2))
-        elif choice == '4':
-            print(divide(num1, num2))
-        elif choice == '5':
-            print(power(num1, num2))
-        elif choice == '6':
-            print(modulus(num1, num2))
+        operations = {
+            '1': calc.add,
+            '2': calc.subtract,
+            '3': calc.multiply,
+            '4': calc.divide,
+            '5': calc.power,
+            '6': calc.modulus
+        }
 
+        result = operations[choice](num1, num2)
+        print(result)
         print("\n-----------------------------------")
 
-# Run program only when this file is executed directly
-if __name__ == "__main__":
-    calculator()
 
+if __name__ == "__main__":
+    main()
