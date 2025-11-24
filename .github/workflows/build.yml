@@ -26,8 +26,8 @@ jobs:
 
     - name: Run tests with coverage
       run: |
-        # Explicitly discover tests in src folder
-        coverage run -m unittest discover -s .github/workflows/src -p "test_main.py"
+        # Discover tests in the 'tests' folder
+        coverage run -m unittest discover -s tests -p "test_*.py"
         coverage report -m
         coverage xml
 
@@ -36,3 +36,4 @@ jobs:
       with:
         files: coverage.xml
         fail_ci_if_error: true
+
